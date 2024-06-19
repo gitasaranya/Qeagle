@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Resume Builder API",
+    "version": "1.0.0",
+    "description": "API for adding titles to user headers in the Resume Builder application."
+  },
+  "servers": [
+    {
+      "url": "http://resumebuilder-dev.testleaf.com:4000"
+    }
+  ],
+  "paths": {
+    "/header/addTitle": {
+      "post": {
+        "summary": "Add a title for a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "example": "70"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "test"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "title"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of titles added for the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 48
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 70
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "Project Lead"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-06-16T23:14:43.000Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-06-16T23:14:43.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Title": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

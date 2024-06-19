@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Resume Builder API",
+    "version": "1.0.0",
+    "description": "API for retrieving templates in the Resume Builder application."
+  },
+  "servers": [
+    {
+      "url": "http://resumebuilder-dev.testleaf.com:4000"
+    }
+  ],
+  "paths": {
+    "/templates/getAllTemplate": {
+      "get": {
+        "summary": "Get all templates",
+        "responses": {
+          "200": {
+            "description": "List of all templates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Template"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Template": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "templateName": {
+            "type": "string",
+            "example": "Executive"
+          },
+          "templateValue": {
+            "type": "object",
+            "properties": {
+              "lbl": {
+                "type": "string",
+                "example": "doc-1-color"
+              },
+              "title": {
+                "type": "string",
+                "example": "doc-2-color"
+              },
+              "format": {
+                "type": "string",
+                "example": "A4"
+              },
+              "header": {
+                "type": "string",
+                "example": ""
+              },
+              "tempFf": {
+                "type": "string",
+                "example": "Ubuntu"
+              },
+              "tempFs": {
+                "type": "string",
+                "example": "l"
+              },
+              "contact": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": [
+                  "email",
+                  "phone"
+                ]
+              },
+              "sub_lbl": {
+                "type": "string",
+                "example": "doc-2-color"
+              },
+              "listColor": {
+                "type": "string",
+                "example": "doc-1-color"
+              },
+              "listStyle": {
+                "type": "string",
+                "example": "circle"
+              },
+              "tempColor": {
+                "type": "string",
+                "example": "3"
+              },
+              "subLblLine": {
+                "type": "string",
+                "example": "doc-2-border"
+              },
+              "contactIcon": {
+                "type": "string",
+                "example": "white"
+              },
+              "headerPanel": {
+                "type": "string",
+                "example": "header-color"
+              },
+              "photoBorder": {
+                "type": "string",
+                "example": "doc-2-color doc-2-border"
+              },
+              "contactColor": {
+                "type": "string",
+                "example": "contact-color"
+              },
+              "tempPhotoStyle": {
+                "type": "string",
+                "example": "round"
+              }
+            }
+          },
+          "docId": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "example": null
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "example": null
+          },
+          "Document": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          }
+        }
+      }
+    }
+  }
+}

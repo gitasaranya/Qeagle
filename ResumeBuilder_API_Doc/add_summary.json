@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Resume Builder API",
+    "version": "1.0.0",
+    "description": "API for managing summaries in the Resume Builder application."
+  },
+  "servers": [
+    {
+      "url": "http://resumebuilder-dev.testleaf.com:4000"
+    }
+  ],
+  "paths": {
+    "/header/addSummary": {
+      "post": {
+        "summary": "Add a summary for a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "summary": {
+                    "type": "string",
+                    "example": "Experienced Java Developer with 5 years of expertise in developing scalable Java applications using Spring Boot and Hibernate. Skilled in designing RESTful web services and microservices architecture. Proficient in Agile methodologies and CI/CD practices. Strong problem-solving skills with a track record of delivering high-quality solutions on time. Committed to continuous learning and staying updated with industry trends."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "example": "70"
+                  }
+                },
+                "required": [
+                  "summary",
+                  "userId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of summaries added for the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Summary"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Summary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 7
+          },
+          "userId": {
+            "type": "integer",
+            "example": 70
+          },
+          "summary": {
+            "type": "string",
+            "example": "10 years of exp in java"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-06-16T23:14:53.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-06-16T23:14:53.000Z"
+          }
+        }
+      }
+    }
+  }
+}
